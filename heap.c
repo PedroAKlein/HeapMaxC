@@ -12,6 +12,7 @@ typedef struct heap {
 void menu(int *opc);
 void leInt(char* text, int *valor);
 void leStr(char* text, char *s);
+int checkStr(char* str);
 void criaHeap(Heap *h);
 int pai(int i);
 int esquerda(int i);
@@ -46,7 +47,7 @@ int main(){
 }
 
 void menu(int *opc){
-    printf("\n---=== MENU ===---\n");
+    printf("\n---=== HEAP DE MAXIMO ===---\n");
     printf(" 1 - Inserir\n");
     printf(" 2 - Remover\n");
     printf(" 3 - Imprimir\n");
@@ -67,6 +68,24 @@ void leStr(char* text, char *str){
     size_t len = strlen(str);
     if (len > 0 && str[len - 1] == '\n')
         str[len - 1] = '\0';
+}
+
+int checkStr(char* str){
+    if(str[0] == '-') return 1;
+    if(str[0] == '1') return 1;
+    if(str[0] == '2') return 1;
+    if(str[0] == '3') return 1;
+    if(str[0] == '4') return 1;
+    if(str[0] == '5') return 1;
+    if(str[0] == '6') return 1;
+    if(str[0] == '7') return 1;
+    if(str[0] == '8') return 1;
+    if(str[0] == '9') return 1;
+    if(str[0] == '0') return 1;
+    if(str[0] == 'S') return 1;
+    if(str[0] == 's') return 1;
+
+    return 0;
 }
 
 void criaHeap(Heap *h){
@@ -104,6 +123,11 @@ void insere(Heap *h){
         }
     
         leStr("Inteiro para inserir (s/S para sair)", str);
+
+        if(!checkStr(str)){
+            printf("Entrada invalida!\n");
+            continue;
+        }
 
         if(str[0] == 's' || str[0] == 'S') break;
     
